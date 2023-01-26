@@ -18,7 +18,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     position: relative;
-    margin-top: 80px;
+    margin-top: 40px;
     justify-self: start;
     span {
         font-size: 2em;
