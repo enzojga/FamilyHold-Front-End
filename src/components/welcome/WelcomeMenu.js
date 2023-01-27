@@ -1,30 +1,35 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../generics/Button";
-import { ButtonContainer, Container } from "../generics/generics";
+import { ButtonContainer, Container, UnderlineText } from "../generics/generics";
 import IconLight from "../generics/IconLight";
 
 export default function WelcomeMenu() {
+
+    const navigate = useNavigate();
+
     return (
         <Container>
             <IconLight/>
             <BottomContainer>
-            <h2>
-                Primeira vez?
-            </h2>
-            <h3>
-                Crie sua conta.
-            </h3>
+                <h2>
+                    Primeira vez?
+                </h2>
+                <UnderlineText onClick={() => {navigate("/sign-up")}}>
+                    Crie sua conta.
+                </UnderlineText>
+                <CustomButtom onClick={() => {navigate("/sign-in")}}>
+                    <span>
+                        Entrar
+                    </span>
+                </CustomButtom>
             </BottomContainer>
-            <CustomButtom>
-                <span>
-                    Entrar
-                </span>
-            </CustomButtom>
         </Container>
     );
 }
 
 const BottomContainer = styled.div`
+    width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -38,7 +43,7 @@ const BottomContainer = styled.div`
         font-size: 1.7em;
         font-weight: 400;
         text-decoration: underline white;
-        margin-top: 20px
+        margin: 20px 0 15px 0;
     }
 `
 

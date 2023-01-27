@@ -9,16 +9,14 @@ import WelcomeMenu from './WelcomeMenu';
 
 export default function WelcomeSwiper() {
 
-    const swiper = useSwiper();
-
     return (
         <Swiper
             modules={[ Pagination ]}
             slidesPerView={1}
             pagination={{ clickable: true }}
         >
-            <SwiperSlide>
-                <Welcome swiper={swiper}/>
+            <SwiperSlide >
+                <Welcome />
             </SwiperSlide>
             <SwiperSlide>
                 <WelcomeMenu/>

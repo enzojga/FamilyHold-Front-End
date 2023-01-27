@@ -6,7 +6,7 @@ export default function Welcome({ swiper }) {
     return (
         <Container>
             <IconLight/>
-            <Button text={"Primeiros passos"} onClick={() => console.log('ola')}/>
+            <Button text={"Primeiros passos"} swiper={swiper}/>
         </Container>
     );
 }
