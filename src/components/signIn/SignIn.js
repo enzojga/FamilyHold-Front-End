@@ -4,27 +4,27 @@ import { Container, FormContainer, UnderlineText } from "../generics/generics";
 import IconLight from "../generics/IconLight";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { signInApi } from "../../services/userApi";
 
 export default function SignIn() {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    
     function handleLogin (e) {
         e.preventDefault();
         console.log('ola');
-        toast.success("Success Notification !", {
-            position: toast.POSITION.TOP_CENTER
-        });
 
         if(username.length < 5 || password.length < 5) {
-
+            toast.error("Os campos de usuário e senha precisam ter ao menos 5 carácteres!");
+        } else {
+            signInApi(username, password).catch(p => console.log(p));
         }
-
+        navigate("/home")
     }
 
     return(
         <Container>
+            <ToastContainer/>
             <IconLight noText={true}/>
             <FormContainer onSubmit={handleLogin}>
                 <label>Usuário</label>
