@@ -17,7 +17,7 @@ const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     h2 {

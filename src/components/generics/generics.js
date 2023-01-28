@@ -102,3 +102,11 @@ export const OpacityContainer = styled.div`
     z-index: 2;
     display: ${props => props.show ? 'initial' : 'none'}
 `
+
+export const GrayContainer = styled(Container)`
+    background-color: #DFDFDF;
+    text-align: center;
+    position:relative;
+    height: 90vh;
+    margin-top: 10vh;
+`
