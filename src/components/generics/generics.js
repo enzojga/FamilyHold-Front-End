@@ -92,3 +92,13 @@ export const FormContainer = styled.form`
         align-self: center;
     }
 `
+
+export const OpacityContainer = styled.div`
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: black;
+    opacity: 50%;
+    z-index: 2;
+    display: ${props => props.show ? 'initial' : 'none'}
+`
