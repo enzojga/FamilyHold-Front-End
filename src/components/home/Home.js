@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ButtonContainer, GrayContainer, OpacityContainer } from "../generics/generics";
+import { AlternativeButton, GrayContainer, OpacityContainer } from "../generics/generics";
 import Header from "../generics/Header";
 import { TfiFaceSad } from 'react-icons/tfi';
 import { AiFillPlusCircle } from 'react-icons/ai';
@@ -21,27 +21,18 @@ export default function Home() {
                 <TfiFaceSad/>
             </BoardList>
             <ButtonsContainer show={show}>
-                <CustomButton>
+                <AlternativeButton>
                     <span>Entrar com convite</span>
-                </CustomButton>
-                <CustomButton onClick={() => {navigate("/board/create")}}>
+                </AlternativeButton>
+                <AlternativeButton onClick={() => {navigate("/board/create")}}>
                     <span>Criar Quadro</span>
-                </CustomButton>
+                </AlternativeButton>
                 <AiFillPlusCircle onClick={ () => { setShow(!show) } }/>
             </ButtonsContainer>
             <OpacityContainer show={show}/>
         </GrayContainer>
     );  
 }
-
-const CustomButton = styled(ButtonContainer)`
-    box-shadow: none;
-    margin-bottom: 15px;
-    background-color: #BE264C;
-    span {
-        color: white;
-    }
-`
 
 const ButtonsContainer = styled.div`
     width: 100%;

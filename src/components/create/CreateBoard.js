@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { FormContainer, GrayContainer } from "../generics/generics";
+import BoardIcons from "../generics/BoardIcons";
+import { AlternativeButton, FormContainer, GrayContainer } from "../generics/generics";
 import Header from "../generics/Header";
 
 export default function CreateBoard() {
+    const navigate = useNavigate();
     return(
         <GrayContainer style={{textAlign:'initial', justifyContent: 'start'}}>
             <Header/>
@@ -21,6 +24,15 @@ export default function CreateBoard() {
                 />
                 <label>Ícones</label>
             </CustomForm>
+            <IconContainer>
+                <BoardIcons icon={1}/>
+                <BoardIcons icon={2}/>
+                <BoardIcons icon={3}/>
+                <BoardIcons icon={4}/>
+            </IconContainer>
+            <AlternativeButton onClick={() => navigate('/board/1')}>
+                <span>Criar</span>
+            </AlternativeButton>
         </GrayContainer>
     )
 }
@@ -31,4 +43,11 @@ const CustomForm = styled(FormContainer)`
         color: black;
         font-weight: 400;
     }
+`
+
+const IconContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
 `

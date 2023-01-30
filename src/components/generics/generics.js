@@ -110,3 +110,11 @@ export const GrayContainer = styled(Container)`
     height: 90vh;
     margin-top: 10vh;
 `
+export const AlternativeButton = styled(ButtonContainer)`
+    box-shadow: none;
+    margin-bottom: 15px;
+    background-color: #BE264C;
+    span {
+        color: white;
+    }
+`

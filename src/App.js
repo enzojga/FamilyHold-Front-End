@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import BoardScreen from "./pages/BoardScreen";
 import CreateBoardScreen from "./pages/CreateBoardScreen";
 import HomeScreen from "./pages/HomeScreen";
 import SignInScreen from "./pages/SignInScreen";
@@ -16,6 +17,7 @@ function App() {
           <Route path="/home" element={<HomeScreen />} />
           <Route path="/board">
             <Route path="create" element={<CreateBoardScreen />} />
+            <Route path=":boardId" element={<BoardScreen/>} />
           </Route>
         </Routes>
       </BrowserRouter>
