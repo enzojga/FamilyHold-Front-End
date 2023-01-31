@@ -13,7 +13,6 @@ export default function Home() {
 
     return(
         <GrayContainer>
-            <Header/>
             <BoardList>
                 <h1>
                     Parece que você ainda não esta participando de nenhum quadro.
@@ -31,7 +30,7 @@ export default function Home() {
             </ButtonsContainer>
             <OpacityContainer show={show}/>
         </GrayContainer>
-    );  
+    );
 }
 
 const ButtonsContainer = styled.div`

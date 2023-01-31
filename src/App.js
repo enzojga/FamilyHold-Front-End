@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
+import { UserProvider } from "./contexts/UserContext";
 import BoardScreen from "./pages/BoardScreen";
 import CreateBoardScreen from "./pages/CreateBoardScreen";
 import HomeScreen from "./pages/HomeScreen";
@@ -9,18 +11,20 @@ import WelcomeScreen from "./pages/WelcomeScreen";
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<WelcomeScreen/>}/>
-          <Route path="/sign-in" element={<SignInScreen />} />
-          <Route path="/sign-up" element={<SignUpScreen />} />
-          <Route path="/home" element={<HomeScreen />} />
-          <Route path="/board">
-            <Route path="create" element={<CreateBoardScreen />} />
-            <Route path=":boardId" element={<BoardScreen/>} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <UserProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<WelcomeScreen/>}/>
+            <Route path="/sign-in" element={<SignInScreen />} />
+            <Route path="/sign-up" element={<SignUpScreen />} />
+            <Route path="/home" element={<PrivateRoute> <HomeScreen /> </PrivateRoute>} />
+            <Route path="/board">
+              <Route path="create" element={<PrivateRoute> <CreateBoardScreen /> </PrivateRoute>} />
+              <Route path=":boardId" element={<PrivateRoute> <BoardScreen /> </PrivateRoute>} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </UserProvider>
     </>
   );
 }

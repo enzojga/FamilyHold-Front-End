@@ -6,7 +6,6 @@ import BoardWarnings from "./BoardWarnings";
 export default function Board({ boardId }) {
     return(
         <GrayContainer style={{justifyContent: 'start'}}>
-            <Header/>
             <BoardWarnings/>
             <Footer/>
         </GrayContainer>

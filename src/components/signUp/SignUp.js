@@ -13,17 +13,19 @@ export default function SignUp() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const mutatation = useMutation({
+    const mutation = useMutation({
         mutationFn: ({username, password}) => signUpApi({username, password}),
         onSuccess: (data) => {
             toast.success("Parabens!");
-            setTimeout(() => navigate('/home'), 1000);
+            setTimeout(() => navigate('/sign-in'), 1000);
         },
         onError: (data) => {
             if(data.response.status === 409) {
                 toast.error("Usuário já cadastrado!");
+                return;
             } else {
                 toast.error("Algo de errado aconteceu.");
+                return;
             }
         },
     },
@@ -39,7 +41,7 @@ export default function SignUp() {
             toast.error("Os campos de usuário e senha precisam ter ao menos 5 carácteres!");
             return;
         }
-        mutatation.mutate({username: username, password: password});
+        mutation.mutate({username: username, password: password});
     }
 
     return(

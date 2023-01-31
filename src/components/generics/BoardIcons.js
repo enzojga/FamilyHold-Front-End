@@ -3,16 +3,25 @@ import { RiSuitcaseFill } from "react-icons/ri";
 import { GiCat } from "react-icons/gi";
 import { FaGamepad } from "react-icons/fa";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 
-export default function BoardIcons( {icon} ) {
+export default function BoardIcons( {icon, selectedIcon, setIcon} ) {
     const iconTable = {
         1: <MdFamilyRestroom/>,
         2: <RiSuitcaseFill/>,
         3: <GiCat/>,
         4: <FaGamepad/>
     }
+    const [isSelected, setIsSelected] = useState(false);
+    useEffect(() => {
+        if(icon === selectedIcon) {
+            setIsSelected(true);
+        } else {
+            setIsSelected(false);
+        }
+    }, [selectedIcon]);
     return(
-        <Icon>
+        <Icon isSelected={isSelected} onClick={() => {setIcon(icon)}}>
             {iconTable[icon]}
         </Icon>
     )
@@ -30,6 +39,6 @@ const Icon = styled.div`
     svg {
         width: 80%;
         height: 80%;
-        color: white;
+        color: ${props => props.isSelected ? 'black' : 'white'};
     }
 `
