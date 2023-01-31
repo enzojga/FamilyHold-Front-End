@@ -1,31 +1,14 @@
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import logoLight from "../../assets/images/family-hold-light.png";
+import { HeaderContainer } from "./generics";
 
 export default function Header() {
+    const navigate = useNavigate();
     return(
-        <HeaderContainer>
+        <HeaderContainer onClick={() => navigate("/home")}>
             <img src={logoLight} alt='logo'/>
             <h2>Olá, Usuário</h2>
         </HeaderContainer>
     )
 }
 
-const HeaderContainer = styled.div`
-    width: 100vw;
-    height: 10vh;
-    background-color: #BE264C;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    h2 {
-        font-size: 1.3em;
-        color: white;
-    }
-    img {
-        width: 8vh;
-        height: 8vh;
-    }
-`

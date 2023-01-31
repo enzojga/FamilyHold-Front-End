@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
+import Board from "../components/board/Board";
 
 export default function BoardScreen() {
     const { boardId } = useParams();
-    console.log(boardId);
     return(
-        ''
+        <Board boardId={boardId}/>
     );
 }

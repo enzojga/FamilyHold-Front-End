@@ -118,3 +118,23 @@ export const AlternativeButton = styled(ButtonContainer)`
         color: white;
     }
 `
+export const HeaderContainer = styled.div`
+    width: 100vw;
+    height: 10vh;
+    background-color: #BE264C;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    top: 0;
+    left: 0;
+    h2 {
+        font-size: 1.3em;
+        color: white;
+    }
+    img {
+        width: 8vh;
+        height: 8vh;
+    }
+`
