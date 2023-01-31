@@ -47,7 +47,7 @@ const ButtonsContainer = styled.div`
     flex-direction: column;
     padding-bottom: 80px;
     & > div {
-        display: ${props => props.show ? 'flex' : 'none'}
+        display: ${props => props.show ? 'flex' : 'none'};
     }
     & > svg {
         color: #BE264C;

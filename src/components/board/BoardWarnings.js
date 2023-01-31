@@ -23,7 +23,7 @@ export default function BoardWarnings() {
                     <h1>
                         Recentes
                     </h1>
-                    <Warning picture={'https://cdn.discordapp.com/attachments/872940057751871488/1066558193544745030/IMG-20221210-WA0023.jpg'} name={'cana'} time={'Hoje 30/01'} text={'Comida'}/>
+                    <Warning picture={'https://cdn.discordapp.com/attachments/872940057751871488/1066558193544745030/IMG-20221210-WA0023.jpg'} name={'Cana'} time={'Hoje 30/01'} text={'Comida'}/>
             </WarningsContainer>
         </>
     )

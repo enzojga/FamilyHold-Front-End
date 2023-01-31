@@ -29,20 +29,24 @@ const WarningContainer = styled.div`
     align-items: center;
     h2 {
         font-size: 1.7em;
-        font-weight: 500;
     }
     & > div {
         display: flex;
         justify-content: center;
         img {
             border-radius: 50%;
-            width: 7vh;
-            height: 7vh;        
+            width: 6.5vh;
+            height: 6.5vh;        
         }
         h3 {
             font-size: 1.5em;
-            font-weight: 400;
+            font-weight: 600;
+            margin-bottom: 7px;
         }
+        h4 {
+            font-size: 1.2em;
+            font-weight: 400;
+        }    
         & > div {
             display: flex;
             flex-direction: column;

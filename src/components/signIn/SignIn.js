@@ -5,21 +5,36 @@ import IconLight from "../generics/IconLight";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { signInApi } from "../../services/userApi";
+import { useMutation } from "react-query";
 
 export default function SignIn() {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const mutatation = useMutation({
+        mutationFn: ({username, password}) => signInApi({username, password}),
+        onSuccess: (data) => {
+            toast.success("Parabens!");
+            setTimeout(() => navigate('/home'), 1000);
+        },
+        onError: (data) => {
+            if(data.response.status === 409) {
+                toast.error("Usuário já cadastrado!");
+            } else {
+                toast.error("Algo de errado aconteceu.");
+            }
+
+        },
+    },
+    );
+
     function handleLogin (e) {
         e.preventDefault();
-        console.log('ola');
-
         if(username.length < 5 || password.length < 5) {
             toast.error("Os campos de usuário e senha precisam ter ao menos 5 carácteres!");
-        } else {
-            signInApi(username, password).catch(p => console.log(p));
         }
-        navigate("/home")
+        mutatation.mutate({username: username, password: password});
     }
 
     return(
