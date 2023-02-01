@@ -1,24 +1,22 @@
 import styled from "styled-components";
 import { AlternativeButton, GrayContainer, OpacityContainer } from "../generics/generics";
-import Header from "../generics/Header";
-import { TfiFaceSad } from 'react-icons/tfi';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
+import { getBoardsApi } from "../../services/boardApi";
+import BoardList from "./BoardList";
+import NoBoard from "./NoBoard";
 
 export default function Home() {
 
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
 
+    const { data, isLoading, error } = useQuery("boards", getBoardsApi);
     return(
-        <GrayContainer>
-            <BoardList>
-                <h1>
-                    Parece que você ainda não esta participando de nenhum quadro.
-                </h1>
-                <TfiFaceSad/>
-            </BoardList>
+        <GrayContainer style={{textAlign:'initial', justifyContent: 'start'}} >
+            {data?.data ? <BoardList data={data.data}/> : <NoBoard/>}
             <ButtonsContainer show={show}>
                 <AlternativeButton>
                     <span>Entrar com convite</span>
@@ -56,16 +54,4 @@ const ButtonsContainer = styled.div`
         bottom: 0;
         right: 0;
     }    
-`
-
-const BoardList = styled.div`
-    h1 {
-        font-size: 2em;
-        font-weight: 600;
-    }
-    svg {
-        margin-top: 2em;
-        width: 33vw;
-        height: 33vw;
-    }   
 `

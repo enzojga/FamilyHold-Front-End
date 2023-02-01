@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { FormContainer } from "../generics/generics"
+import { FormContainer, VerticalLine } from "../generics/generics"
 import { CiPaperplane } from "react-icons/ci";
 import Warning from "./Warning";
 
@@ -28,12 +28,6 @@ export default function BoardWarnings() {
         </>
     )
 }
-
-const VerticalLine = styled.div`
-    width: 100vw;
-    height: 5px;
-    background-color: #961D3A;
-`
 
 const CustomForm = styled(FormContainer)`
     width: auto;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import BoardIcons from "../generics/BoardIcons";
-import { AlternativeButton, FormContainer, GrayContainer } from "../generics/generics";
+import { AlternativeButton, FormContainer, GrayContainer, IconContainer } from "../generics/generics";
 import Header from "../generics/Header";
 import { toast, ToastContainer } from 'react-toastify';
 import { createBoardApi } from "../../services/boardApi";
@@ -33,7 +33,7 @@ export default function CreateBoard() {
 
 
 
-    function handleSubmit(e){
+    function handleSubmit(){
         if(name.length < 5 || name.length > 12) {
             toast.error("O nome do quadro precisa ter no minímo 5 carácteres e no maximo 12");
             return;
@@ -81,11 +81,4 @@ const CustomForm = styled(FormContainer)`
         color: black;
         font-weight: 400;
     }
-`
-
-const IconContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    width: 100%;
 `

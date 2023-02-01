@@ -109,6 +109,8 @@ export const GrayContainer = styled(Container)`
     position:relative;
     height: 90vh;
     margin-top: 10vh;
+    justify-content: 'start';
+    text-align:'initial'
 `
 export const AlternativeButton = styled(ButtonContainer)`
     box-shadow: none;
@@ -137,4 +139,16 @@ export const HeaderContainer = styled.div`
         width: 8vh;
         height: 8vh;
     }
+`
+
+export const IconContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+`
+export const VerticalLine = styled.div`
+width: 100vw;
+height: 5px;
+background-color: #961D3A;
 `
