@@ -1,17 +1,23 @@
+import dayjs from "dayjs";
 import styled from "styled-components";
+import personIcon from "../../assets/images/personIcon.jpg"
 
-export default function Warning({ picture, name, time, text}) {
+export default function Warning({ info, teste }) {
+    const { UsersInfo } = info?.Boards;
+    const day = dayjs(info?.created_at).format('DD/MM');
+    const hour = dayjs(info?.created_at).format('HH:mm');
+    const firstWord = info?.text.split(' ');
     return(
         <WarningContainer>
             <div>
-                <img src={picture} alt='user picture' />
+                <img src={UsersInfo?.picture || personIcon} alt='user picture' />
                 <div>
-                    <h3>{name}</h3>
-                    <h4>{time}</h4>
+                    <h3>{UsersInfo?.nickname || info?.Users?.username}</h3>
+                    <h4>{day + ' / ' + hour}</h4>
                 </div>
             </div>
             <h2>
-                {text}...
+                {firstWord[0]}...
             </h2>
         </WarningContainer>
     );
@@ -19,7 +25,7 @@ export default function Warning({ picture, name, time, text}) {
 
 const WarningContainer = styled.div`
     margin-top: 20px;
-    width: 100vw;
+    width: 99vw;
     height: 8vh;
     background-color: white;
     border: 1px solid #961D3A;
@@ -28,7 +34,7 @@ const WarningContainer = styled.div`
     justify-content: space-around;
     align-items: center;
     h2 {
-        font-size: 1.7em;
+        font-size: 1.2em;
     }
     & > div {
         display: flex;
@@ -39,12 +45,13 @@ const WarningContainer = styled.div`
             height: 6.5vh;        
         }
         h3 {
-            font-size: 1.5em;
+            font-size: 1.2em;
             font-weight: 600;
             margin-bottom: 7px;
+            max-width: 50%
         }
         h4 {
-            font-size: 1.2em;
+            font-size: 1em;
             font-weight: 400;
         }    
         & > div {

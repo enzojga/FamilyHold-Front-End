@@ -107,7 +107,7 @@ export const GrayContainer = styled(Container)`
     background-color: #DFDFDF;
     text-align: center;
     position:relative;
-    height: 90vh;
+    height: calc(100% - 10vw);
     margin-top: 10vh;
     justify-content: 'start';
     text-align:'initial'

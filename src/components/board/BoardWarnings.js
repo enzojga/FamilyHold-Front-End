@@ -2,28 +2,53 @@ import styled from "styled-components"
 import { FormContainer, VerticalLine } from "../generics/generics"
 import { CiPaperplane } from "react-icons/ci";
 import Warning from "./Warning";
+import { useMutation, useQuery } from "react-query";
+import { createWarningApi, getWarningsApi } from "../../services/warningApi";
+import { useState } from "react";
+import { toast, ToastContainer } from 'react-toastify';
 
-export default function BoardWarnings() {
+export default function BoardWarnings({ id }) {
+
+    const [textWarning, setTextWarning] = useState('');
+    
+
+    const { data, isLoading, error } = useQuery(["warnings", id], () => getWarningsApi(id));
+
+    const mutation = useMutation({
+        mutationFn: ({id, textWarning}) => createWarningApi({id, text: textWarning}),
+        onSuccess: (data) => {
+            toast.success("Aviso criado!");
+            setTextWarning('');
+            console.log(data);
+        },
+        onError: (data) => {
+                toast.error("Algo de errado aconteceu.");
+                console.log(data);
+        },
+    });
+    console.log(data?.data)
     return (
         <>
+            <ToastContainer/>
             <CreateWarningContainer>
                 <CustomForm>
                 <input
                         type="text"
                         name="text"
                         placeholder="Escreva um aviso"
+                        onChange={e => setTextWarning(e.target.value)}
                     />
                 </CustomForm>
-                <Icon>
+                <Icon onClick={() => {mutation.mutate({ id, textWarning })}}>
                     <CiPaperplane/>
                 </Icon>
             </CreateWarningContainer>
             <VerticalLine/>
-            <WarningsContainer>
+            <WarningsContainer style={{ marginBottom: '11vh'}}>
                     <h1>
                         Recentes
                     </h1>
-                    <Warning picture={'https://cdn.discordapp.com/attachments/872940057751871488/1066558193544745030/IMG-20221210-WA0023.jpg'} name={'Cana'} time={'Hoje 30/01'} text={'Comida'}/>
+                    {data?.data.map(w => <Warning info={w} />)}
             </WarningsContainer>
         </>
     )
@@ -45,7 +70,7 @@ const CustomForm = styled(FormContainer)`
 `
 
 const CreateWarningContainer = styled.div`
-    margin-top: 30px;
+    margin-top: 20px;
     display: flex;
     width: 100vw;
     align-items: center;
