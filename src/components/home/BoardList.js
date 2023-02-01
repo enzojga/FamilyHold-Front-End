@@ -11,7 +11,7 @@ export default function BoardList( data ) {
             <TitleLine text={'Seus quadros'}/>
             <IconContainer style={{ justifyContent: 'space-between'}}>
                 { data.data.map((p, i) => 
-                <IconTextContainer onClick={() => {console.log(i)}}>
+                <IconTextContainer onClick={ () => { navigate(`/board/${p.Boards.id}`) } }>
                     <BoardIcons id={p.Boards.icon} icon={p.Boards.icon} key={i}/>
                     <span>{p.Boards.name}</span>
                 </IconTextContainer>) }

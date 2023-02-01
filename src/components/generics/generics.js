@@ -131,6 +131,7 @@ export const HeaderContainer = styled.div`
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     top: 0;
     left: 0;
+    z-index: 1;
     h2 {
         font-size: 1.3em;
         color: white;

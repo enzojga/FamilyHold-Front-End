@@ -26,13 +26,13 @@ export default function Home() {
                 </AlternativeButton>
                 <AiFillPlusCircle onClick={ () => { setShow(!show) } }/>
             </ButtonsContainer>
-            <OpacityContainer show={show}/>
+            {show ? <OpacityContainer show={show}/> : <></>}
         </GrayContainer>
     );
 }
 
 const ButtonsContainer = styled.div`
-    width: 100%;
+    width: ${props => props.show ? '100vw' : '0'};;
     height: 100vh;
     position: absolute;
     bottom: 0;
