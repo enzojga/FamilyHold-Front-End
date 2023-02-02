@@ -1,13 +1,20 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import UserContext from "../../contexts/UserContext";
 
-export default function Message({ self }) {
+export default function Message({ info }) {
+
+    const userInfo = info.Users.UsersInfo[0];
+    const { userData } = useContext(UserContext);
+    const self = Boolean(userData.username === info.Users.username);
+
     return (
         <MessageContainer self={self}>
             <div>
-                <span>Enzolol</span>
+                <span>{userInfo?.nickname || info.Users.username}</span>
                 <h3>Hoje, 15:30</h3>
             </div>
-            <span>Indo papar</span>
+            <span>{info.message}</span>
         </MessageContainer>
     )
 }

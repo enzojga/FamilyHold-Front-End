@@ -5,7 +5,7 @@ import BoardMessages from "../messages/BoardMessages";
 export default function Board({ boardId }) {
     return(
         <GrayContainer style={{justifyContent: 'start'}}>
-            <BoardMessages/>
+            <BoardMessages id={boardId}/>
             <Footer/>
         </GrayContainer>
     );

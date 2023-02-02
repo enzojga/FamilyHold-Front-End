@@ -1,16 +1,16 @@
+import { useQuery } from 'react-query';
 import styled from 'styled-components'
+import { getMessagessApi } from '../../services/messagesApi';
 import TitleLine from '../generics/TitleLine'
 import Message from './Message'
 
-export default function BoardMessages() {
+export default function BoardMessages({ id }) {
+    const { data, isLoading, error } = useQuery(["warnings", id], () => getMessagessApi(id));
     return(
         <>
             <TitleLine text={'Conversa'}/>
             <MessagesContainer>
-                <Message self={false}/>
-                <Message self={true}/>
-                <Message self={false}/>
-                <Message self={true}/>
+                {data?.data ? data.data.map(m => <Message info={m}/>) : ''}
             </MessagesContainer>
         </>
     )
@@ -21,4 +21,5 @@ const MessagesContainer = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
+    margin-bottom: 10vh;
 `

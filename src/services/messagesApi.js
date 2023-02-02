@@ -8,7 +8,7 @@ export function sendMessageApi({message, id}) {
   return response;
 }
 
-export function getBoardsApi({ id }) {
+export function getMessagessApi(id) {
   const response = api.get(`/board/message/${id}`, config);
   return response;
 }
