@@ -26,7 +26,6 @@ export default function BoardWarnings({ id }) {
                 console.log(data);
         },
     });
-    console.log(data?.data)
     return (
         <>
             <ToastContainer/>
