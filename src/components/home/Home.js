@@ -32,7 +32,7 @@ export default function Home() {
 }
 
 const ButtonsContainer = styled.div`
-    width: ${props => props.show ? '100vw' : '0'};;
+    width: ${props => props.show ? '100%' : '0'};;
     height: 100vh;
     position: absolute;
     bottom: 0;
@@ -42,7 +42,6 @@ const ButtonsContainer = styled.div`
     display: flex;
     justify-content: end;
     flex-direction: column;
-    padding-bottom: 80px;
     & > div {
         display: ${props => props.show ? 'flex' : 'none'};
     }
@@ -53,5 +52,6 @@ const ButtonsContainer = styled.div`
         position: fixed;
         bottom: 0;
         right: 0;
+        transform: ${props => props.show ? 'rotateZ(45deg)' : 'rotateZ(0)' };
     }    
 `

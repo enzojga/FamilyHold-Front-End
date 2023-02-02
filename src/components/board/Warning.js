@@ -10,9 +10,9 @@ export default function Warning({ info, teste }) {
     return(
         <WarningContainer>
             <div>
-                <img src={UsersInfo?.picture || personIcon} alt='user picture' />
+                <img src={UsersInfo[0]?.picture || personIcon} alt='user picture' />
                 <div>
-                    <h3>{UsersInfo?.nickname || info?.Users?.username}</h3>
+                    <h3>{UsersInfo[0]?.nickname || info?.Users?.username}</h3>
                     <h4>{day + ' / ' + hour}</h4>
                 </div>
             </div>
@@ -31,14 +31,20 @@ const WarningContainer = styled.div`
     border: 1px solid #961D3A;
     border-radius: 100px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    overflow: hidden;
     h2 {
         font-size: 1.2em;
+        max-width: 50%;
+        overflow: hidden;
+        margin-right: 10px;
     }
     & > div {
         display: flex;
         justify-content: center;
+        max-width: 50%;
+        margin-left: 10px;
         img {
             border-radius: 50%;
             width: 6.5vh;
