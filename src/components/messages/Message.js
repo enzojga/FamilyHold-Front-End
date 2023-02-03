@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { useContext } from "react";
 import styled from "styled-components";
 import UserContext from "../../contexts/UserContext";
@@ -8,11 +9,13 @@ export default function Message({ info }) {
     const { userData } = useContext(UserContext);
     const self = Boolean(userData.username === info.Users.username);
 
+    const day = dayjs(info.created_at).format('DD/MM HH:mm')
+
     return (
         <MessageContainer self={self}>
             <div>
                 <span>{userInfo?.nickname || info.Users.username}</span>
-                <h3>Hoje, 15:30</h3>
+                <h3>{day}</h3>
             </div>
             <span>{info.message}</span>
         </MessageContainer>

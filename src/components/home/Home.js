@@ -16,7 +16,7 @@ export default function Home() {
     const { data, isLoading, error } = useQuery("boards", getBoardsApi);
     return(
         <GrayContainer style={{textAlign:'initial', justifyContent: 'start'}} >
-            {data?.data ? <BoardList data={data.data}/> : <NoBoard/>}
+            {data?.data[0] ? <BoardList data={data.data}/> : <NoBoard/>}
             <ButtonsContainer show={show}>
                 <AlternativeButton>
                     <span>Entrar com convite</span>

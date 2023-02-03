@@ -35,8 +35,8 @@ export default function SignIn() {
 
     function handleLogin (e) {
         e.preventDefault();
-        if(username.length < 5 || password.length < 5) {
-            toast.error("Os campos de usuário e senha precisam ter ao menos 5 carácteres!");
+        if(username.length < 4 || password.length < 4) {
+            toast.error("Os campos de usuário e senha precisam ter ao menos 4 carácteres!");
             return;
         }
         mutation.mutate({username: username, password: password});
