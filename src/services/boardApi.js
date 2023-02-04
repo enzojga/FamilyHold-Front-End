@@ -12,3 +12,8 @@ export function getBoardsApi() {
   const response = api.get('/board', config);
   return response;
 }
+
+export function quitBoardApi(id) {
+  const response = api.delete(`/${id}`, config);
+  return response;
+}

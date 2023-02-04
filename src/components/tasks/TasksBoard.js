@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from 'react-query';
-import { getTasksApi, joinTasksApi } from '../../services/taskApi';
+import { deleteTasksApi, getTasksApi, joinTasksApi } from '../../services/taskApi';
 import TitleLine from '../generics/TitleLine';
 import Task from './Task';
 import { toast, ToastContainer } from 'react-toastify';
@@ -22,11 +22,29 @@ export default function TaskBoard({ id }) {
             }
         },
     });
+
+    const deleteTask = useMutation({
+        mutationFn: (id) => deleteTasksApi(id),
+        onSuccess: (data) => {
+            console.log(data);
+            toast.success("Atividade deletada!");
+        },
+        onError: (data) => {
+            if(data.response.status === 401) {
+                toast.error("Você não pode excluir uma atividade que não é sua!");
+                return;
+            } else {
+                toast.error("Algo de errado aconteceu.");
+                return;
+            }
+        },
+    });
+
     return(
         <>
             <ToastContainer/>
             <TitleLine text={'Tarefas'}/>
-            {data?.data ? data.data.map(t => <Task task={t} mutation={mutation} />) : ''}
+            {data?.data ? data.data.map(t => <Task task={t} mutation={mutation} deleteTask={deleteTask} />) : ''}
         </>
     );
 }

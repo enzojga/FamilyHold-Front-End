@@ -4,7 +4,7 @@ import { ImArrowDown } from 'react-icons/im';
 import personIcon from "../../assets/images/personIcon.jpg"
 import dayjs from "dayjs";
 
-export default function Task({ task, mutation }) {
+export default function Task({ task, mutation, deleteTask }) {
     const categories = ['name', '', '', '']; 
     const picture = task?.UserTask[0]?.Users?.UsersInfo[0]?.picture;
     const day = dayjs(task.created_at).format('DD/MM HH:mm')
@@ -15,7 +15,7 @@ export default function Task({ task, mutation }) {
                 <h1>{task.name}</h1>
                 <div>
                     <IconContaier>
-                        <BsFillTrashFill/>
+                        <BsFillTrashFill onClick={() => {deleteTask.mutate(task.id)}}/>
                     </IconContaier>
                     <IconContaier>
                         <ImArrowDown onClick={() => mutation.mutate(task.id) } />
