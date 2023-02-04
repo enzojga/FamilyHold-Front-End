@@ -31,8 +31,6 @@ export default function CreateBoard() {
         },
     });
 
-
-
     function handleSubmit(){
         if(name.length < 5 || name.length > 12) {
             toast.error("O nome do quadro precisa ter no minímo 5 carácteres e no maximo 12");

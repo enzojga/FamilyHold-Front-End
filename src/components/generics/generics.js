@@ -148,8 +148,24 @@ export const IconContainer = styled.div`
     justify-content: space-evenly;
     width: 100%;
 `
+
 export const VerticalLine = styled.div`
-width: 100vw;
-height: 5px;
-background-color: #961D3A;
+    width: 100vw;
+    height: 5px;
+    background-color: #961D3A;
+`
+
+export const CustomForm = styled(FormContainer)`
+    margin-top: 30px;
+    label {
+        color: black;
+        font-weight: 400;
+    }
+    & > button {
+        margin-bottom: 15px;
+        background-color: #BE264C;
+        span {
+            color: white;
+        }    
+    }
 `

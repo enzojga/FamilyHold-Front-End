@@ -18,7 +18,7 @@ export default function Home() {
         <GrayContainer style={{textAlign:'initial', justifyContent: 'start'}} >
             {data?.data[0] ? <BoardList data={data.data}/> : <NoBoard/>}
             <ButtonsContainer show={show}>
-                <AlternativeButton>
+                <AlternativeButton onClick={() => {navigate("/board/join")}}>
                     <span>Entrar com convite</span>
                 </AlternativeButton>
                 <AlternativeButton onClick={() => {navigate("/board/create")}}>

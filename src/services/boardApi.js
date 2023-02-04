@@ -17,3 +17,9 @@ export function quitBoardApi(id) {
   const response = api.delete(`/${id}`, config);
   return response;
 }
+
+export function joinBoardApi(invite) {
+  console.log(invite);
+  const response = api.post(`/board/join`, {invite}, config);
+  return response;
+}

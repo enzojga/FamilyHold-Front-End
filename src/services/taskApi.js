@@ -3,8 +3,8 @@ import createHeaders from './headers';
 
 const config = createHeaders();
 
-export function postTaskApi({message, id}) {
-  const response = api.post(`/board/task/${id}`, {message}, config);
+export function postTaskApi({taskName, id}) {
+  const response = api.post(`/board/task/${id}`, {name: taskName}, config);
   return response;
 }
 

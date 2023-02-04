@@ -8,6 +8,7 @@ import { getUserInfoApi } from "../../services/userInfoApi";
 
 export default function BoardParticipannts( { id } ) {
     const { data, isLoading, error } = useQuery(["info", id], () => getUserInfoApi(id));
+
     return(
         <>
             <TitleLine text={'Participantes'}/>
@@ -19,7 +20,7 @@ export default function BoardParticipannts( { id } ) {
                 </div>
             </SavingsContainer>
             <ParticipatsContainer>
-                {data?.data ? data.data.map(p => <Participant info={p}/>) : ''}
+                {data?.data ? data.data.map(p => <Participant info={p} id={id}/>) : ''}
             </ParticipatsContainer>
         </>
     )

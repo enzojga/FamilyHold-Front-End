@@ -2,8 +2,17 @@ import styled from "styled-components";
 import { ImExit } from 'react-icons/im';
 import { BsFillPencilFill } from 'react-icons/bs';
 import personIcon from "../../assets/images/personIcon.jpg"
+import { useNavigate } from "react-router-dom";
 
-export default function Parsticipant({ info }) {
+export default function Parsticipant({ info, id }) {
+    const navigate = useNavigate();
+    const navigateState = {id, nickname: info?.Users?.UsersInfo[0]?.nickname,
+                                status: info?.Users?.UsersInfo[0]?.status,
+                                picture: info?.Users?.UsersInfo[0]?.picture
+                            }
+    function showLogic() {
+        
+    }
     return(
         <ParticipantContainer>
             <div>
@@ -13,7 +22,8 @@ export default function Parsticipant({ info }) {
                 </div>
                 <div>
                     <IconContaier>
-                        <BsFillPencilFill/>
+                        <BsFillPencilFill onClick={() => navigate("/board/create/user-info",
+                         {state: navigateState})}/>
                     </IconContaier>
                     <IconContaier>
                         <ImExit/>
@@ -37,6 +47,7 @@ const ParticipantContainer = styled.div`
     display: flex;
     flex-direction: column;
     text-align: start;
+    margin-bottom: 10px;
     span {
         font-size: 1.5em;
         align-self: start;
