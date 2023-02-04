@@ -2,30 +2,32 @@ import styled from "styled-components";
 import { BsFillTrashFill } from 'react-icons/bs';
 import { ImArrowDown } from 'react-icons/im';
 import personIcon from "../../assets/images/personIcon.jpg"
+import dayjs from "dayjs";
 
-export default function Task() {
+export default function Task({ task, mutation }) {
     const categories = ['name', '', '', '']; 
+    const picture = task?.UserTask[0]?.Users?.UsersInfo[0]?.picture;
+    const day = dayjs(task.created_at).format('DD/MM HH:mm')
     return(
         <TaskCotainer>
             {categories.map((p, i) => <CategorieDiv i={i}/>)}
             <div>
-                <h1>Nome da tarefa</h1>
+                <h1>{task.name}</h1>
                 <div>
                     <IconContaier>
                         <BsFillTrashFill/>
                     </IconContaier>
                     <IconContaier>
-                        <ImArrowDown/>
+                        <ImArrowDown onClick={() => mutation.mutate(task.id) } />
                     </IconContaier>
                 </div>
             </div>
             <div>
                 <div>
                     <h2>Participantes:</h2>
-                    <img src={personIcon}/>
-                    <img src={personIcon}/>
+                    {task?.UserTask[0] ?task?.UserTask.map(u =>  <img src={u.Users.UsersInfo[0]. picture || personIcon}/>) : ''}
                 </div>
-                <span>15/02 02:30</span>
+                <span>{day}</span>
             </div>
         </TaskCotainer>       
     );
@@ -38,6 +40,7 @@ const TaskCotainer = styled.div`
     background-color: white;
     border-radius: 20px;
     position: relative;
+    margin-bottom: 10px;
     & > div {
         margin: 10px 0 0 10px;
         display:flex;
@@ -51,9 +54,10 @@ const TaskCotainer = styled.div`
                 font-weight: 600;
             }
             img {
-                width: 7vw;
-                height: 7vw;
+                width: 8vw;
+                height: 8vw;
                 border-radius: 50%;
+                margin-left: 5px;
             }
         }
         h1 {

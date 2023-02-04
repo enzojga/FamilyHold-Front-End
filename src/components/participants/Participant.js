@@ -3,13 +3,13 @@ import { ImExit } from 'react-icons/im';
 import { BsFillPencilFill } from 'react-icons/bs';
 import personIcon from "../../assets/images/personIcon.jpg"
 
-export default function Participant({ info }) {
+export default function Parsticipant({ info }) {
     return(
         <ParticipantContainer>
             <div>
                 <div>
-                    <img src={info?.picture || personIcon}/>
-                    <h1>{info?.nickname || info.Users.username}</h1>
+                    <img src={info?.Users?.UsersInfo[0]?.picture || personIcon}/>
+                    <h1>{info?.Users?.UsersInfo[0]?.nickname || info.Users.username}</h1>
                 </div>
                 <div>
                     <IconContaier>
@@ -21,7 +21,7 @@ export default function Participant({ info }) {
                 </div>
             </div>
             <span>
-                {info?.status || 'Estou disponivel!'}
+                {info?.Users?.UsersInfo[0]?.status || 'Estou disponivel!'}
             </span>
         </ParticipantContainer>
     )   

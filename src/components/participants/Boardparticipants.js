@@ -8,7 +8,6 @@ import { getUserInfoApi } from "../../services/userInfoApi";
 
 export default function BoardParticipannts( { id } ) {
     const { data, isLoading, error } = useQuery(["info", id], () => getUserInfoApi(id));
-    console.log(data);
     return(
         <>
             <TitleLine text={'Participantes'}/>
