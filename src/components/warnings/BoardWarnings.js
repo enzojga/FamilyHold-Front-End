@@ -27,9 +27,11 @@ export default function BoardWarnings({ id }) {
                 console.log(data);
         },
     });
+
     if(error) {
         return <Navigate to='/home' replace />;
     }
+    
     return (
         <>
             <ToastContainer/>

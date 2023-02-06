@@ -31,9 +31,6 @@ export default function Parsticipant({ info, id }) {
                         <BsFillPencilFill onClick={() => navigate("/board/create/user-info",
                          {state: navigateState})}/>
                     </IconContaier>
-                    <IconContaier style={{display: showLogic()}}>
-                        <ImExit/>
-                    </IconContaier>
                 </div>
             </div>
             <span>
