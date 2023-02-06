@@ -5,30 +5,34 @@ import { FormContainer, VerticalLine } from '../generics/generics';
 import TitleLine from '../generics/TitleLine'
 import Message from './Message'
 import { IoIosPaperPlane } from 'react-icons/io';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
 export default function BoardMessages({ id }) {
     const [message, setMessage] = useState('');
-    const { data, isLoading, error } = useQuery(["messages", id], () => getMessagessApi(id));
-
+    const { data, isLoading, error, refetch } = useQuery(["messages", id], () => getMessagessApi(id), {refetchInterval: 1000});
+    const refBody = useRef('');
     const mutation = useMutation({
         mutationFn: ({id, message}) => sendMessageApi({id, message}),
         onSuccess: (data) => {
+            refetch();
             setMessage('');
-            console.log(data);
         },
         onError: (data) => {
                 toast.error("Algo de errado aconteceu.");
                 console.log(data);
         },
     });
-
+    useEffect(() => {
+        refBody.current.scrollIntoView({behavior: 'smooth'});
+    }, [data]);
+    
     return(
         <>
             <TitleLine text={'Conversa'}/>
-            <MessagesContainer>
-                {data?.data ? data.data.map(m => <Message info={m}/>) : ''}
+            <MessagesContainer> 
+                {data?.data ? data?.data.map(m => <Message info={m}/>) : ''}
+                <div ref={refBody}></div>
             </MessagesContainer>
 
             <SendMessageContaier>

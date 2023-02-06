@@ -95,8 +95,10 @@ export const FormContainer = styled.form`
 
 export const OpacityContainer = styled.div`
     width: 100vw;
-    height: 110vh;
+    height: 100vh;
     position: fixed;
+    top: 0;
+    left: 0;
     background-color: black;
     opacity: 50%;
     z-index: 2;

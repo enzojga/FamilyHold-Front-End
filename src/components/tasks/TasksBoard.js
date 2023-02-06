@@ -10,13 +10,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function TaskBoard({ id }) {
-    const { data, isLoading, error } = useQuery(["tasks", id], () => getTasksApi(id));
+    const { data, isLoading, error, refetch } = useQuery(["tasks", id], () => getTasksApi(id));
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
     const mutation = useMutation({
         mutationFn: (id) => joinTasksApi(id),
         onSuccess: (data) => {
-            console.log(data);
+            refetch();
             toast.success("Se inscreveu!");
         },
         onError: (data) => {
@@ -33,7 +33,7 @@ export default function TaskBoard({ id }) {
     const deleteTask = useMutation({
         mutationFn: (id) => deleteTasksApi(id),
         onSuccess: (data) => {
-            console.log(data);
+            refetch();
             toast.success("Atividade deletada!");
         },
         onError: (data) => {
@@ -70,8 +70,8 @@ export default function TaskBoard({ id }) {
 const ButtonsContainer = styled.div`
     width: ${props => props.show ? '100%' : '0'};;
     height: 110vh;
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    bottom: 20vh;
     right: 0;
     z-index: 3;
     align-items: center;

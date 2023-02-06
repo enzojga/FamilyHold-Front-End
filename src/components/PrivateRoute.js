@@ -5,6 +5,9 @@ import { useContext } from "react";
 
 export default function PrivateRoute({ children }) {
     const { userData } = useContext(UserContext);
+    if(window.innerWidth > 770) {
+        return <Navigate to='/' replace />;
+    };
     if (userData.token) {
         return (
             <>

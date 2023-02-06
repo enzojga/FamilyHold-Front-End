@@ -3,11 +3,15 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import { ImArrowDown } from 'react-icons/im';
 import personIcon from "../../assets/images/personIcon.jpg"
 import dayjs from "dayjs";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 export default function Task({ task, mutation, deleteTask }) {
-    const categories = ['name', '', '', '']; 
+    const categories = []; 
     const picture = task?.UserTask[0]?.Users?.UsersInfo[0]?.picture;
-    const day = dayjs(task.created_at).format('DD/MM HH:mm')
+    const day = dayjs(task.created_at).format('DD/MM HH:mm');
+    const { userData } = useContext(UserContext);
+    
     return(
         <TaskCotainer>
             {categories.map((p, i) => <CategorieDiv i={i}/>)}
@@ -25,7 +29,7 @@ export default function Task({ task, mutation, deleteTask }) {
             <div>
                 <div>
                     <h2>Participantes:</h2>
-                    {task?.UserTask[0] ?task?.UserTask.map(u =>  <img src={u.Users.UsersInfo[0]. picture || personIcon}/>) : ''}
+                    {task?.UserTask[0]?task?.UserTask.map(u =>  <img src={u.Users.UsersInfo[0].picture || personIcon}/>) : ''}
                 </div>
                 <span>{day}</span>
             </div>

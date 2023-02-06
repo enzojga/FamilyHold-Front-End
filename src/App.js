@@ -11,6 +11,7 @@ import SignInScreen from "./pages/SignInScreen";
 import SignUpScreen from "./pages/SignUpScreen";
 import UserInfoUpdateScreen from "./pages/UserInfoUpdateScreen";
 import WelcomeScreen from "./pages/WelcomeScreen";
+import "./assets/styles/reset.css"
 
 function App() {
   return (

@@ -34,8 +34,8 @@ export default function Home() {
 const ButtonsContainer = styled.div`
     width: ${props => props.show ? '100%' : '0'};;
     height: 100vh;
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    bottom: 10vh;
     right: 0;
     z-index: 3;
     align-items: center;

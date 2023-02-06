@@ -3,15 +3,21 @@ import { ImExit } from 'react-icons/im';
 import { BsFillPencilFill } from 'react-icons/bs';
 import personIcon from "../../assets/images/personIcon.jpg"
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 export default function Parsticipant({ info, id }) {
     const navigate = useNavigate();
+    const { userData } = useContext(UserContext);
     const navigateState = {id, nickname: info?.Users?.UsersInfo[0]?.nickname,
                                 status: info?.Users?.UsersInfo[0]?.status,
                                 picture: info?.Users?.UsersInfo[0]?.picture
                             }
     function showLogic() {
-        
+        if(info.Users.username === userData.username){
+            return 'flex';
+        }
+        return 'none';
     }
     return(
         <ParticipantContainer>
@@ -21,11 +27,11 @@ export default function Parsticipant({ info, id }) {
                     <h1>{info?.Users?.UsersInfo[0]?.nickname || info.Users.username}</h1>
                 </div>
                 <div>
-                    <IconContaier>
+                    <IconContaier style={{display: showLogic()}}>
                         <BsFillPencilFill onClick={() => navigate("/board/create/user-info",
                          {state: navigateState})}/>
                     </IconContaier>
-                    <IconContaier>
+                    <IconContaier style={{display: showLogic()}}>
                         <ImExit/>
                     </IconContaier>
                 </div>

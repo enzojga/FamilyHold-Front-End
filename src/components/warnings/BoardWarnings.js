@@ -1,31 +1,35 @@
 import styled from "styled-components"
-import { FormContainer, VerticalLine } from "../generics/generics"
+import { FormContainer, OpacityContainer, VerticalLine } from "../generics/generics"
 import { CiPaperplane } from "react-icons/ci";
 import Warning from "./Warning";
 import { useMutation, useQuery } from "react-query";
 import { createWarningApi, getWarningsApi } from "../../services/warningApi";
 import { useState } from "react";
 import { toast, ToastContainer } from 'react-toastify';
+import { Navigate } from "react-router-dom";
 
 export default function BoardWarnings({ id }) {
 
     const [textWarning, setTextWarning] = useState('');
     
 
-    const { data, isLoading, error } = useQuery(["warnings", id], () => getWarningsApi(id));
+    const { data, isLoading, error, refetch } = useQuery(["warnings", id], () => getWarningsApi(id));
 
     const mutation = useMutation({
         mutationFn: ({id, textWarning}) => createWarningApi({id, text: textWarning}),
         onSuccess: (data) => {
+            refetch();
             toast.success("Aviso criado!");
             setTextWarning('');
-            console.log(data);
         },
         onError: (data) => {
                 toast.error("Algo de errado aconteceu.");
                 console.log(data);
         },
     });
+    if(error) {
+        return <Navigate to='/home' replace />;
+    }
     return (
         <>
             <ToastContainer/>
@@ -35,6 +39,7 @@ export default function BoardWarnings({ id }) {
                         type="text"
                         name="text"
                         placeholder="Escreva um aviso"
+                        value={textWarning}
                         onChange={e => setTextWarning(e.target.value)}
                     />
                 </CustomForm>

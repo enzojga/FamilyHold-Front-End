@@ -12,13 +12,13 @@ export default function BoardParticipannts( { id } ) {
     return(
         <>
             <TitleLine text={'Participantes'}/>
-            <SavingsContainer>
+            {/*<SavingsContainer>
                 <MdSavings/>
                 <span><strong>Cofrinho:</strong> <h2> R$: 1000,00</h2></span>
                 <div>
                     <FaCoins/>
                 </div>
-            </SavingsContainer>
+            </SavingsContainer>*/}
             <ParticipatsContainer>
                 {data?.data ? data.data.map(p => <Participant info={p} id={id}/>) : ''}
             </ParticipatsContainer>
